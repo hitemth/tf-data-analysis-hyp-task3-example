@@ -17,7 +17,4 @@ def solution(control_npv, test_npv) -> bool: # Одна или две выбор
     t_stat, p_value = ttest_ind(control_npv, test_npv, equal_var=False)
     
     # Определяем, отклоняем ли нулевую гипотезу
-    if t_stat <0 and p_value <= 0.03:
-        return True
-    else:
-        return False
+    return p_value < 0.03
