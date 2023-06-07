@@ -8,14 +8,16 @@ def solution(control_npv, test_npv) -> bool: # Одна или две выбор
     from scipy.stats import ttest_ind
 
     # Рассчитываем среднее значение NPV в контрольной группе
-    control_mean = sum(control_npv) / len(control_npv)
+    #control_mean = sum(control_npv) / len(control_npv)
     
     # Рассчитываем среднее значение NPV в тестовой группе
-    test_mean = sum(test_npv) / len(test_npv)
+    #test_mean = sum(test_npv) / len(test_npv)
     
     # Выполняем t-тест Стьюдента для независимых выборок
     t_stat, p_value = ttest_ind(control_npv, test_npv, equal_var=False)
     
     # Определяем, отклоняем ли нулевую гипотезу
-
-    return p_value < 0.03
+    if t_stat <0 and p_value <= 0.03:
+        return True
+    else:
+        return False
